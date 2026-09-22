@@ -1,0 +1,20 @@
+{
+  "scope": "trigger",
+  "context_id": "demo_calls_dip",
+  "version": 1,
+  "payload": {
+    "id": "demo_calls_dip",
+    "merchant_id": "demo_cafe",
+    "scope": "merchant",
+    "kind": "perf_dip",
+    "urgency": 3,
+    "suppression_key": "demo:calls:week1",
+    "payload": {
+      "metric": "calls",
+      "delta_pct": -0.4,
+      "window": "7d"
+    },
+    "expires_at": "2026-05-30T00:00:00Z"
+  },
+  "delivered_at": "2026-04-26T10:00:00Z"
+}

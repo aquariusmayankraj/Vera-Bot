@@ -1,0 +1,100 @@
+{
+  "checks_passed": 18,
+  "checks": [
+    {
+      "check": "GET /v1/healthz",
+      "passed": true
+    },
+    {
+      "check": "GET /v1/metadata",
+      "passed": true
+    },
+    {
+      "check": "context push category",
+      "passed": true
+    },
+    {
+      "check": "idempotency category",
+      "passed": true
+    },
+    {
+      "check": "stale version category",
+      "passed": true
+    },
+    {
+      "check": "context push merchant",
+      "passed": true
+    },
+    {
+      "check": "idempotency merchant",
+      "passed": true
+    },
+    {
+      "check": "stale version merchant",
+      "passed": true
+    },
+    {
+      "check": "context push trigger",
+      "passed": true
+    },
+    {
+      "check": "idempotency trigger",
+      "passed": true
+    },
+    {
+      "check": "stale version trigger",
+      "passed": true
+    },
+    {
+      "check": "tick returns a grounded action",
+      "passed": true
+    },
+    {
+      "check": "action anchored in input",
+      "passed": true
+    },
+    {
+      "check": "first message uses a template",
+      "passed": true
+    },
+    {
+      "check": "duplicate tick suppressed",
+      "passed": true
+    },
+    {
+      "check": "acceptance produces draft",
+      "passed": true
+    },
+    {
+      "check": "reply replay returns cached response",
+      "passed": true
+    },
+    {
+      "check": "STOP ends conversation",
+      "passed": true
+    }
+  ],
+  "elapsed_seconds": 0.0252,
+  "sample_action": {
+    "conversation_id": "conv_76ffc6f76ff48adb8dfc0e67",
+    "merchant_id": "smoke_6394ccdcab_merchant",
+    "customer_id": null,
+    "trigger_id": "smoke_6394ccdcab_trigger",
+    "template_name": "vera_context_message_v1",
+    "template_params": [
+      "Asha, Calls are down 40% in the 7d. Latest 30-day snapshot: 20 calls. CTR 2.5% vs category benchmark 3%. Your active offer is Lunch Thali @ ₹149. Shall I send a focused checklist for this issue? Reply YES."
+    ],
+    "body": "Vera update: Asha, Calls are down 40% in the 7d. Latest 30-day snapshot: 20 calls. CTR 2.5% vs category benchmark 3%. Your active offer is Lunch Thali @ ₹149. Shall I send a focused checklist for this issue? Reply YES.",
+    "cta": "binary_yes_no",
+    "send_as": "vera",
+    "suppression_key": "smoke_6394ccdcab_dip",
+    "rationale": "Uses event delta and latest snapshot without conflating their windows; treats benchmark scope and causal uncertainty explicitly."
+  },
+  "sample_reply": {
+    "action": "send",
+    "body": "Review draft for Demo Cafe: the calls movement is down 40% in 7d. Check the current listing, enquiry handling and offer visibility before attributing a cause. Use only the listed active offer: Lunch Thali @ ₹149. This is a proposed review, not a completed account update.",
+    "cta": "none",
+    "rationale": "Acceptance fulfilled with an actual draft from current context; no additional qualifying question or invented completion."
+  },
+  "note": "Real local HTTP functional test. Not an LLM judge score, load benchmark or public deployment certification."
+}

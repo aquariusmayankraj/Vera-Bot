@@ -1,0 +1,32 @@
+Original scoring logic; explicit simulated time; all supplied seed customers loaded.
+Some triggers correctly produce no action due to expiry, future due dates, missing facts, consent or cadence.
+The original simulator scores seed-trigger batches, not the generated 30-pair submission file.
+
+======================================================================
+                          LLM JUDGE — WARMUP                          
+======================================================================
+
+[INFO] Bot: http://127.0.0.1:8089
+[INFO] LLM: Ollama (llama3)
+[INFO] Loaded: 5 categories, 10 merchants, 25 triggers
+
+--- WARMUP ---
+
+[PASS] healthz (9ms)
+[PASS] metadata — Team: My Vera Bot, Model: deterministic-rule-engine-v1 (no external LLM)
+
+--- CONTEXT PUSH ---
+
+  [PASS] category/salons
+  [PASS] category/pharmacies
+  [PASS] category/gyms
+  [PASS] category/restaurants
+  [PASS] category/dentists
+  [PASS] merchant/001
+  [PASS] merchant/002
+  [PASS] merchant/003
+  [PASS] merchant/004
+  [PASS] merchant/005
+
+Verified loaded counts: {"category": 5, "merchant": 10, "customer": 15, "trigger": 0}
+No LLM calls made: warmup only. Ollama provider object was not contacted.

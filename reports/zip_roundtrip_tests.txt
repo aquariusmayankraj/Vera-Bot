@@ -1,0 +1,4 @@
+Tests run from a newly extracted ZIP, using installed dependencies.
+........................................................................ [ 74%]
+.........................                                                [100%]
+97 passed in 0.85s
