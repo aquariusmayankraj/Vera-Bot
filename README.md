@@ -1,94 +1,210 @@
-# Vera Studio — Netlify frontend + Render backend
+Vera Challenge Bot
 
-A complete, independent challenge-message playground. **Deploy it yourself; no cloud service is created by this package.**
+A deterministic, context-grounded challenge message engine exposed
+through a REST API.
 
-- **Frontend:** static HTML, CSS and JavaScript modules; no npm installation or build needed. Responsive chat, context editor, API console and connection settings.
-- **Backend:** Python / FastAPI / SQLite; all five required `/v1` endpoints, plus an isolated `/demo/v1` namespace for website testing.
-- **Engine:** the previous deterministic rule-based composer. No external LLM/API key is needed. This is not a general-purpose AI chat service or actual WhatsApp/Google/booking integration.
+OpenAPI: 3.1
+Version: 1.0.0
+Server: Uvicorn / FastAPI
+Note: This service does not perform real WhatsApp delivery or real
+account changes.
 
-## Start here
+Overview
 
-Read **[INSTRUCTIONS_HINDI.md](INSTRUCTIONS_HINDI.md)** for the complete manual deployment steps, Windows instructions and troubleshooting.
+Vera Challenge Bot provides a small API for managing challenge-related
+context and generating deterministic replies.
 
-1. Put the extracted repository contents on your Git provider. Create a Render **Python Web Service**, root directory `backend`, build `pip install -r requirements.txt`, start `python start.py`, health check `/v1/healthz`.
-2. Edit **one setting**, `API_BASE_URL`, inside `frontend/config.js`:
+The API is organized into two groups:
 
-   ```js
-   API_BASE_URL: "https://your-real-render-service.onrender.com",
-   ```
+Judge API --- health, metadata, context, ticking the engine, and
+generating replies.
 
-   Use your real **base URL** with no `/v1`, `/demo` or `/docs`. Never put a secret here.
-3. Drag only the **`frontend` folder** onto Netlify's manual deployment dropzone. Do not upload `backend`, `.env`, databases or the entire repository as a static site. For Git deployment, the root `netlify.toml` sets publish directory `frontend`; leave the build command blank.
-4. In Render, set `CORS_ORIGINS` to your actual Netlify origin. Set optional `FRONTEND_URL` to add an interface link to the backend's landing page. Open the Netlify site and start a demo.
+Lifecycle --- teardown/reset of the current runtime state.
 
-**Share the Netlify URL to display the interface. Submit the Render base URL to the challenge's API evaluator.**
+API Endpoints
 
-## Local run
+Method                  Endpoint                Purpose
 
-Terminal 1, from this repository:
+GET                     /v1/healthz           Check whether the
+service is healthy
 
-```bash
-cd backend
-python3 -m venv .venv
-source .venv/bin/activate
+GET                     /v1/metadata          Get service metadata
+
+POST                    /v1/context           Provide/update context
+for the engine
+
+POST                    /v1/tick              Advance the engine
+using the supplied tick
+information
+
+POST                    /v1/reply             Generate a reply for a
+conversation message
+
+Request Models
+
+ReplyRequest
+
+The reply endpoint accepts:
+
+conversation_id --- required string, 1--240 characters
+
+merchant_id --- optional string
+
+customer_id --- optional string
+
+from_role --- required string
+
+message --- required string, 1--12,000 characters
+
+received_at --- required date-time
+
+turn_number --- required integer, 1--10,000
+
+Example:
+
+{
+  "conversation_id": "conv-001",
+  "merchant_id": "merchant-001",
+  "customer_id": "customer-001",
+  "from_role": "customer",
+  "message": "I need help with my order.",
+  "received_at": "2026-09-22T10:00:00Z",
+  "turn_number": 1
+}
+
+TickRequest
+
+The tick endpoint accepts:
+
+now --- required date-time
+
+available_triggers --- list of available trigger strings
+
+Example:
+
+{
+  "now": "2026-09-22T10:00:00Z",
+  "available_triggers": []
+}
+
+Teardown Response
+
+A successful teardown returns a response similar to:
+
+{
+  "accepted": true,
+  "cleared": true
+}
+
+This indicates that the teardown request was accepted and the runtime
+state was cleared.
+
+Health Check
+
+The health endpoint returns the service status and runtime/context
+information.
+
+Example response:
+
+{
+  "status": "ok",
+  "uptime_seconds": 779,
+  "contexts_loaded": {
+    "category": 0,
+    "merchant": 0,
+    "customer": 0,
+    "trigger": 0
+  }
+}
+
+The exact uptime_seconds value changes while the service is running.
+
+Validation
+
+The API uses request validation. Invalid or missing fields can result
+in:
+
+422 Validation Error
+
+Validation errors contain details about the field that failed
+validation.
+
+For example, ReplyRequest requires fields such as conversation_id,
+from_role, message, received_at, and turn_number.
+
+Interactive API Documentation
+
+When the application is running locally, FastAPI provides interactive
+API documentation.
+
+Open:
+
+http://127.0.0.1:8080/docs
+
+The Swagger UI can be used to inspect the endpoints, request schemas,
+response schemas, and execute API requests directly from the browser.
+
+Running Locally
+
+Create and activate a virtual environment:
+
+Windows
+
+python -m venv .venv
+.venv\Scripts\activate
+
+Install dependencies:
+
 pip install -r requirements.txt
-cp .env.example .env
+
+Start the API:
+
 python start.py
-```
 
-Terminal 2, from the repository root:
+If the project is configured to run through Uvicorn directly, the
+equivalent command is:
 
-```bash
-python3 -m http.server 5500 --directory frontend
-```
+uvicorn vera.api:app --host 0.0.0.0 --port 8080
 
-Open `http://localhost:5500`. On localhost, blank `API_BASE_URL` defaults to `http://localhost:8080`. On a public domain, blank config displays the interface with a connection prompt, not fake chatbot replies. Do not double-click `index.html`; JavaScript modules need HTTP serving.
+Then open:
 
-## Features and limits
+http://127.0.0.1:8080/docs
 
-The playground loads synthetic context, calls the backend, renders returned messages, and sends correctly numbered replies. New sessions use new demo IDs. The context editor retains custom expiry, consent and history, so an invalid/expired scenario may legitimately produce no action. The API console offers demo or real challenge mode; real write requests require a browser confirmation.
+Example API Flow
 
-Demo and judge state are **different databases**, but this is **not per-visitor/multi-tenant authentication**. Use synthetic data. `API_TOKEN` optionally protects writes; `TEARDOWN_TOKEN` separately enables destructive challenge-state deletion. Secrets are never included in frontend config or browser persistence. A browser override saves only the URL; transcripts and tokens are in memory until refresh. Exported JSON may contain the data you entered.
+A typical flow is:
 
-**Render Free has ephemeral storage and cold starts.** For durable SQLite across redeploys/restarts, choose a paid service and attach a persistent disk, then set `DB_PATH` to `/var/data/vera.sqlite3` on a disk mounted at `/var/data`. The Blueprint defaults to Free for demonstration; it does not silently provision a paid disk. One process / worker / instance is the supported architecture. Changing DB_PATH does not migrate an old database automatically.
+1. Start the API
+       ↓
+2. Check /v1/healthz
+       ↓
+3. Load/provide context using /v1/context
+       ↓
+4. Advance state using /v1/tick
+       ↓
+5. Send a conversation message using /v1/reply
+       ↓
+6. Receive the generated response
+       ↓
+7. Use /v1/teardown to clear runtime state
 
-## Contents
+Technology
 
-```text
-frontend/                  Static website; upload this folder to Netlify
-backend/                   Full FastAPI backend; Render root directory
-backend/challenge_reference/ Original supplied challenge documents and fixtures
-backend/expanded/          Generated original challenge fixtures (not auto-loaded)
-render.yaml                Optional full-repository Render Blueprint
-netlify.toml               Netlify publish directory
-INSTRUCTIONS_HINDI.md      Detailed deployment and setup guide
-scripts/smoke_check.py     Five-endpoint sandbox HTTP check (Python stdlib)
-scripts/browser_smoke.py   Optional Playwright UI/regression check
-tests/frontend.test.mjs    JavaScript helper, scenario and HTTP-client unit tests
-docs/TEST_REPORT.md        What was actually tested and what was not
-reports/                   Local test evidence and interface screenshots
-```
+The API is built around:
 
-## Verification
+Python
 
-```bash
-cd backend
-pip install -r requirements-dev.txt
-python -m pytest -q
-cd ..
-node --test tests/frontend.test.mjs
-# Start the backend first; demo namespace only:
-python3 scripts/smoke_check.py --base-url http://127.0.0.1:8080
-```
+FastAPI
 
-Node is optional and only used for the frontend test suite; it is not required to deploy/run the website. Browser tests need Playwright plus Chromium, separately installed; see the test report. No cloud deployment, public-HTTPS check or external LLM scoring was performed.
+Uvicorn
 
-## Sources
+Pydantic
 
-Provider setup was checked against official docs on 2026-09-22. These sources inform deployment only; they do not add merchant facts:
-- Render FastAPI: https://render.com/docs/deploy-fastapi
-- Render free-service limits: https://render.com/docs/free
-- Netlify manual/Git deployment: https://docs.netlify.com/deploy/create-deploys/
-- FastAPI CORS: https://fastapi.tiangolo.com/tutorial/cors/
+OpenAPI 3.1
 
-The original challenge material and attribution remain in `backend/challenge_reference` and `backend/THIRD_PARTY_NOTICES.md`.
+Important Note
+
+Vera Challenge Bot is designed as a deterministic challenge/message
+engine. It should not be interpreted as a real WhatsApp integration, and
+the documented service does not perform real WhatsApp delivery or
+account changes.
