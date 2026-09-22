@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # COST NOTICE: this selects paid compute plus a persistent disk.
 # Review the provider's current charges before creating the service.
 services:
@@ -18,13 +19,43 @@ services:
     envVars:
       - key: DB_PATH
         value: /app/data/vera.sqlite3
+=======
+# Manual Render Blueprint import is optional. No resources are created by this file alone.
+# Free is for demos: cold starts and local data loss can affect challenge evaluation.
+services:
+  - type: web
+    name: vera-studio-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python start.py
+    healthCheckPath: /v1/healthz
+    autoDeployTrigger: "off"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.13.5"
+      - key: DB_PATH
+        value: data/vera.sqlite3
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: DEMO_ENABLED
+        value: "true"
+      - key: DOCS_ENABLED
+        value: "true"
+>>>>>>> b7310dbb2c6a1968b791bd65350edc8bbb40aaf7
       - key: TEAM_NAME
         sync: false
       - key: TEAM_MEMBERS
         sync: false
       - key: CONTACT_EMAIL
         sync: false
+<<<<<<< HEAD
       - key: STATE_TTL_HOURS
         value: "24"
       - key: DOCS_ENABLED
         value: "true"
+=======
+      - key: FRONTEND_URL
+        sync: false
+>>>>>>> b7310dbb2c6a1968b791bd65350edc8bbb40aaf7

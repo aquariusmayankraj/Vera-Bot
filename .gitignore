@@ -3,6 +3,7 @@
 !.env.example
 .venv/
 venv/
+node_modules/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -13,4 +14,5 @@ data/
 *.db
 *.db-*
 *.log
+backend/data/
 .DS_Store

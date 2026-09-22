@@ -1,0 +1,7 @@
+Desktop full chat incl STOP passed
+API console + JSON errors passed
+20 live scenario combinations passed
+Lost-response exact-turn safe retry passed
+Settings bad base URL + token clearing passed
+Mobile views no horizontal page overflow passed
+Page errors []

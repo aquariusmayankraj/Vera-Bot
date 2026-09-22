@@ -1,0 +1,5 @@
+# Deploy from the fullstack repository. Nothing needs to be built.
+[build]
+  publish = "frontend"
+# For manual deployment, upload ONLY the frontend folder.
+# Runtime API URL lives in frontend/config.js, not Netlify environment variables.

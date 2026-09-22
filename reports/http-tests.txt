@@ -1,0 +1,21 @@
+PASS judge health
+PASS sandbox health
+PASS sandbox metadata
+PASS CORS preflight
+PASS context category
+PASS context idempotency category
+PASS stale version category
+PASS context merchant
+PASS context idempotency merchant
+PASS stale version merchant
+PASS context trigger
+PASS context idempotency trigger
+PASS stale version trigger
+PASS tick action
+PASS grounded initial message
+PASS duplicate tick suppressed
+PASS reply drafts
+PASS reply exact retry
+PASS STOP ends session
+PASS judge context counts unchanged
+20 checks passed; /mnt/data/vera-fullstack/reports/http-sandbox.json

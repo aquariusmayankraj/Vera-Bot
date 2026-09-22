@@ -1,0 +1,32 @@
+{
+  "scope": "merchant",
+  "context_id": "demo_cafe",
+  "version": 1,
+  "payload": {
+    "merchant_id": "demo_cafe",
+    "category_slug": "restaurants",
+    "identity": {
+      "name": "Demo Cafe",
+      "owner_first_name": "Asha",
+      "languages": [
+        "en"
+      ],
+      "verified": true
+    },
+    "performance": {
+      "calls": 20,
+      "views": 800,
+      "window_days": 30,
+      "ctr": 0.025
+    },
+    "offers": [
+      {
+        "id": "demo_offer",
+        "title": "Lunch Thali @ ₹149",
+        "status": "active"
+      }
+    ],
+    "conversation_history": []
+  },
+  "delivered_at": "2026-04-26T10:00:00Z"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "vera-studio-checks",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node --test tests/frontend.test.mjs"},
+  "description": "Optional dependency-free JavaScript tests. The frontend needs no npm build."
+}

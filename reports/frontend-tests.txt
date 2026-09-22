@@ -1,0 +1,280 @@
+TAP version 13
+# Subtest: base URL is centralized and normalized
+ok 1 - base URL is centralized and normalized
+  ---
+  duration_ms: 1.059079
+  type: 'test'
+  ...
+# Subtest: reject invalid backend URL 
+ok 2 - reject invalid backend URL 
+  ---
+  duration_ms: 0.25826
+  type: 'test'
+  ...
+# Subtest: reject invalid backend URL javascript:alert(1)
+ok 3 - reject invalid backend URL javascript:alert(1)
+  ---
+  duration_ms: 0.896133
+  type: 'test'
+  ...
+# Subtest: reject invalid backend URL https://vera-api.onrender.com/v1
+ok 4 - reject invalid backend URL https://vera-api.onrender.com/v1
+  ---
+  duration_ms: 0.101593
+  type: 'test'
+  ...
+# Subtest: reject invalid backend URL https://vera-api.onrender.com/docs
+ok 5 - reject invalid backend URL https://vera-api.onrender.com/docs
+  ---
+  duration_ms: 0.077507
+  type: 'test'
+  ...
+# Subtest: reject invalid backend URL https://u:s@vera-api.onrender.com
+ok 6 - reject invalid backend URL https://u:s@vera-api.onrender.com
+  ---
+  duration_ms: 0.078618
+  type: 'test'
+  ...
+# Subtest: reject invalid backend URL https://vera-api.onrender.com/?x=1
+ok 7 - reject invalid backend URL https://vera-api.onrender.com/?x=1
+  ---
+  duration_ms: 0.071047
+  type: 'test'
+  ...
+# Subtest: reject invalid backend URL https://vera-api.onrender.com/\#x
+ok 8 - reject invalid backend URL https://vera-api.onrender.com/\#x
+  ---
+  duration_ms: 0.321626
+  type: 'test'
+  ...
+# Subtest: reject invalid backend URL https://your-service.onrender.com
+ok 9 - reject invalid backend URL https://your-service.onrender.com
+  ---
+  duration_ms: 0.360194
+  type: 'test'
+  ...
+# Subtest: HTTPS frontend rejects HTTP backend
+ok 10 - HTTPS frontend rejects HTTP backend
+  ---
+  duration_ms: 0.420164
+  type: 'test'
+  ...
+# Subtest: no localhost fallback on public website
+ok 11 - no localhost fallback on public website
+  ---
+  duration_ms: 0.217728
+  type: 'test'
+  ...
+# Subtest: local fallback and configured URL precedence
+ok 12 - local fallback and configured URL precedence
+  ---
+  duration_ms: 0.088213
+  type: 'test'
+  ...
+# Subtest: JSON objects only with explicit optional-null support
+ok 13 - JSON objects only with explicit optional-null support
+  ---
+  duration_ms: 0.630853
+  type: 'test'
+  ...
+# Subtest: all five routes separated by mode
+ok 14 - all five routes separated by mode
+  ---
+  duration_ms: 0.182625
+  type: 'test'
+  ...
+# Subtest: schema details produce useful errors
+ok 15 - schema details produce useful errors
+  ---
+  duration_ms: 0.178289
+  type: 'test'
+  ...
+# Subtest: scenario restaurants/perf_dip has fresh consistent IDs and expiry
+ok 16 - scenario restaurants/perf_dip has fresh consistent IDs and expiry
+  ---
+  duration_ms: 2.193061
+  type: 'test'
+  ...
+# Subtest: scenario restaurants/perf_spike has fresh consistent IDs and expiry
+ok 17 - scenario restaurants/perf_spike has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.140562
+  type: 'test'
+  ...
+# Subtest: scenario restaurants/milestone_reached has fresh consistent IDs and expiry
+ok 18 - scenario restaurants/milestone_reached has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.177057
+  type: 'test'
+  ...
+# Subtest: scenario restaurants/curious_ask_due has fresh consistent IDs and expiry
+ok 19 - scenario restaurants/curious_ask_due has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.195185
+  type: 'test'
+  ...
+# Subtest: scenario salons/perf_dip has fresh consistent IDs and expiry
+ok 20 - scenario salons/perf_dip has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.160543
+  type: 'test'
+  ...
+# Subtest: scenario salons/perf_spike has fresh consistent IDs and expiry
+ok 21 - scenario salons/perf_spike has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.118289
+  type: 'test'
+  ...
+# Subtest: scenario salons/milestone_reached has fresh consistent IDs and expiry
+ok 22 - scenario salons/milestone_reached has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.091178
+  type: 'test'
+  ...
+# Subtest: scenario salons/curious_ask_due has fresh consistent IDs and expiry
+ok 23 - scenario salons/curious_ask_due has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.132851
+  type: 'test'
+  ...
+# Subtest: scenario gyms/perf_dip has fresh consistent IDs and expiry
+ok 24 - scenario gyms/perf_dip has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.16532
+  type: 'test'
+  ...
+# Subtest: scenario gyms/perf_spike has fresh consistent IDs and expiry
+ok 25 - scenario gyms/perf_spike has fresh consistent IDs and expiry
+  ---
+  duration_ms: 1.184198
+  type: 'test'
+  ...
+# Subtest: scenario gyms/milestone_reached has fresh consistent IDs and expiry
+ok 26 - scenario gyms/milestone_reached has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.104869
+  type: 'test'
+  ...
+# Subtest: scenario gyms/curious_ask_due has fresh consistent IDs and expiry
+ok 27 - scenario gyms/curious_ask_due has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.07298
+  type: 'test'
+  ...
+# Subtest: scenario dentists/perf_dip has fresh consistent IDs and expiry
+ok 28 - scenario dentists/perf_dip has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.067211
+  type: 'test'
+  ...
+# Subtest: scenario dentists/perf_spike has fresh consistent IDs and expiry
+ok 29 - scenario dentists/perf_spike has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.059219
+  type: 'test'
+  ...
+# Subtest: scenario dentists/milestone_reached has fresh consistent IDs and expiry
+ok 30 - scenario dentists/milestone_reached has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.061183
+  type: 'test'
+  ...
+# Subtest: scenario dentists/curious_ask_due has fresh consistent IDs and expiry
+ok 31 - scenario dentists/curious_ask_due has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.063516
+  type: 'test'
+  ...
+# Subtest: scenario pharmacies/perf_dip has fresh consistent IDs and expiry
+ok 32 - scenario pharmacies/perf_dip has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.057307
+  type: 'test'
+  ...
+# Subtest: scenario pharmacies/perf_spike has fresh consistent IDs and expiry
+ok 33 - scenario pharmacies/perf_spike has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.054842
+  type: 'test'
+  ...
+# Subtest: scenario pharmacies/milestone_reached has fresh consistent IDs and expiry
+ok 34 - scenario pharmacies/milestone_reached has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.075944
+  type: 'test'
+  ...
+# Subtest: scenario pharmacies/curious_ask_due has fresh consistent IDs and expiry
+ok 35 - scenario pharmacies/curious_ask_due has fresh consistent IDs and expiry
+  ---
+  duration_ms: 0.090236
+  type: 'test'
+  ...
+# Subtest: new session does not mutate source or refresh custom expiry
+ok 36 - new session does not mutate source or refresh custom expiry
+  ---
+  duration_ms: 0.395377
+  type: 'test'
+  ...
+# Subtest: customer references change together but consent is preserved
+ok 37 - customer references change together but consent is preserved
+  ---
+  duration_ms: 0.207904
+  type: 'test'
+  ...
+# Subtest: customer consent and scope are not invented
+ok 38 - customer consent and scope are not invented
+  ---
+  duration_ms: 0.188394
+  type: 'test'
+  ...
+# Subtest: oversized custom input rejected
+ok 39 - oversized custom input rejected
+  ---
+  duration_ms: 2.789822
+  type: 'test'
+  ...
+# Subtest: mismatched category rejected
+ok 40 - mismatched category rejected
+  ---
+  duration_ms: 0.117037
+  type: 'test'
+  ...
+# Subtest: API adds bearer only to POST and excludes it from request logs
+ok 41 - API adds bearer only to POST and excludes it from request logs
+  ---
+  duration_ms: 23.113741
+  type: 'test'
+  ...
+# Subtest: API exposes 401 rather than fake chat
+ok 42 - API exposes 401 rather than fake chat
+  ---
+  duration_ms: 1.320513
+  type: 'test'
+  ...
+# Subtest: non JSON successful response is rejected
+ok 43 - non JSON successful response is rejected
+  ---
+  duration_ms: 1.094102
+  type: 'test'
+  ...
+# Subtest: POST is not automatically retried after lost response
+ok 44 - POST is not automatically retried after lost response
+  ---
+  duration_ms: 1.815761
+  type: 'test'
+  ...
+# Subtest: timeout marks an ambiguous write
+ok 45 - timeout marks an ambiguous write
+  ---
+  duration_ms: 22.066379
+  type: 'test'
+  ...
+1..45
+# tests 45
+# suites 0
+# pass 45
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 124.287454

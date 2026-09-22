@@ -1,0 +1,16 @@
+VERA STUDIO — COMPLETE FRONTEND + BACKEND
+
+1. Read INSTRUCTIONS_HINDI.md.
+2. Render: deploy repository, Root Directory backend,
+   Build: pip install -r requirements.txt
+   Start: python start.py
+   Health: /v1/healthz
+3. Paste the Render HTTPS BASE URL in frontend/config.js -> API_BASE_URL.
+4. Netlify: upload ONLY the frontend folder. No build needed.
+5. Set CORS_ORIGINS in Render to your exact Netlify origin.
+6. Share Netlify URL for UI; submit Render base URL for challenge APIs.
+
+No deployment has been done for you. No API keys/secrets are included.
+Render Free local SQLite is ephemeral. Read the persistent-disk section before
+using this for retained state or a cold-start-sensitive evaluation.
+Tests and verification limits: docs/TEST_REPORT.md

@@ -1,0 +1,16 @@
+{
+  "scope": "category",
+  "context_id": "restaurants",
+  "version": 1,
+  "payload": {
+    "slug": "restaurants",
+    "peer_stats": {
+      "avg_ctr": 0.03
+    },
+    "voice": {
+      "tone": "warm_busy_practical"
+    },
+    "digest": []
+  },
+  "delivered_at": "2026-04-26T10:00:00Z"
+}
