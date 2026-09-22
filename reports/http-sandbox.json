@@ -1,0 +1,27 @@
+{
+  "executed_at": "2026-09-22T08:39:46.882719+00:00",
+  "checks_passed": 20,
+  "checks": [
+    "judge health",
+    "sandbox health",
+    "sandbox metadata",
+    "CORS preflight",
+    "context category",
+    "context idempotency category",
+    "stale version category",
+    "context merchant",
+    "context idempotency merchant",
+    "stale version merchant",
+    "context trigger",
+    "context idempotency trigger",
+    "stale version trigger",
+    "tick action",
+    "grounded initial message",
+    "duplicate tick suppressed",
+    "reply drafts",
+    "reply exact retry",
+    "STOP ends session",
+    "judge context counts unchanged"
+  ],
+  "note": "Local or manually selected HTTP target. Synthetic demo writes only. No deployment or quality-score claim."
+}

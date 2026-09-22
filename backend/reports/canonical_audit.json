@@ -1,0 +1,50 @@
+{
+  "total_pairs": 30,
+  "composed": 20,
+  "suppressed": 10,
+  "determinism_verified": true,
+  "llm_judge_run": false,
+  "suppression_reasons": [
+    {
+      "test_id": "T03",
+      "reason": "Suppressed: missing purpose-specific customer consent."
+    },
+    {
+      "test_id": "T04",
+      "reason": "Suppressed: missing purpose-specific customer consent."
+    },
+    {
+      "test_id": "T08",
+      "reason": "Suppressed: missing purpose-specific customer consent."
+    },
+    {
+      "test_id": "T10",
+      "reason": "Suppressed: competitor identity missing."
+    },
+    {
+      "test_id": "T14",
+      "reason": "Suppressed: missing purpose-specific customer consent."
+    },
+    {
+      "test_id": "T15",
+      "reason": "Suppressed: missing purpose-specific customer consent."
+    },
+    {
+      "test_id": "T19",
+      "reason": "Suppressed: festival identity/date missing."
+    },
+    {
+      "test_id": "T23",
+      "reason": "Suppressed: milestone counts are missing; no milestone invented."
+    },
+    {
+      "test_id": "T25",
+      "reason": "Suppressed: no matching performance movement in trigger or current merchant data."
+    },
+    {
+      "test_id": "T29",
+      "reason": "Suppressed: missing purpose-specific customer consent."
+    }
+  ],
+  "note": "Synthetic inputs only. Some expanded triggers contain placeholder:true and lack essential facts/consent. The HTTP API skips suppressed outputs; it never sends an empty body. Live evaluation also applies supplied simulated time, consent and cadence gates."
+}

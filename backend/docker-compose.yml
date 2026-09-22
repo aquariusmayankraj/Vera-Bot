@@ -1,0 +1,15 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    init: true
+    env_file: .env
+    environment:
+      PORT: "8080"
+      DB_PATH: /app/data/vera.sqlite3
+    ports:
+      - "${HOST_PORT:-8080}:8080"
+    volumes:
+      - vera_data:/app/data
+volumes:
+  vera_data:

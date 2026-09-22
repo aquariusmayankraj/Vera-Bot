@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123d32">
+  <meta name="description" content="An independent merchant-assistant playground. Connect your backend, prepare context, and test grounded conversations.">
+  <title>Vera Studio · Merchant assistant</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js"></script>
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to workspace</a>
+  <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-9.5a8.5 8.5 0 1 1 17 0Z"/><path d="M7 9h9M7 13h6"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 10 6-10 6L2 9l10-6Zm-10 12 10 6 10-6M2 12l10 6 10-6"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4h7l2 2 2-2h7v16h-7l-2 1-2-1H3V4Zm9 2v15"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.7 6.3L21 12l-6.3 2.7L12 21l-2.7-6.3L3 12l6.3-2.7L12 3Z"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4m-7 7-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0m4 2 2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0" transform="translate(3 0) scale(.85)"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16M8 4v6m8 4v6"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></symbol>
+  </svg>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#playground" aria-label="Vera Studio home"><span class="brand-mark">v<span>✦</span></span><span>vera<span class="brand-sub">STUDIO</span></span></a>
+      <div class="sidebar-label">BUILD & EXPLORE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="playground" aria-current="page"><svg><use href="#i-chat"/></svg>Playground<span class="nav-dot"></span></button>
+        <button class="nav-item" data-view="context"><svg><use href="#i-layers"/></svg>Context editor</button>
+        <button class="nav-item" data-view="api"><svg><use href="#i-code"/></svg>API console</button>
+        <button class="nav-item" data-view="guide"><svg><use href="#i-book"/></svg>Setup guide</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="engine-note"><span class="small-orbit">✦</span><strong>Context in. Clarity out.</strong><p>Rule-based responses.<br>No paid AI key required.</p></div>
+        <button class="sidebar-connection" data-open-settings><span class="status-dot" data-status-dot></span><span><strong data-status-label>Not connected</strong><small id="sidebar-host">Connect your Render backend</small></span><svg><use href="#i-settings"/></svg></button>
+        <p class="sidebar-foot">Independent challenge project<br>Not an official magicpin service</p>
+      </div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar"><div class="breadcrumb"><span>WORKSPACE</span><span>/</span><strong id="breadcrumb-view">Playground</strong></div><div class="topbar-actions"><span class="demo-pill"><span></span>Sandbox</span><button class="button button-small button-outline" data-open-settings><svg><use href="#i-link"/></svg><span id="connect-button-text">Connect backend</span></button></div></header>
+      <main id="main" tabindex="-1">
+        <div class="connection-banner" id="connection-banner"><div><strong>Your interface is ready.</strong><span id="connection-hint">Connect your Render URL to start testing real bot responses.</span></div><button class="text-button" data-open-settings>Set backend URL <span>↗</span></button></div>
+        <div id="global-error" class="alert error" role="alert" hidden></div>
+        <section class="view" id="view-playground" aria-labelledby="playground-title">
+          <div class="page-heading"><div><div class="eyebrow">THE CONVERSATION WORKSPACE</div><h1 id="playground-title">Your merchant assistant.</h1><p>A real conversation, powered by the context you provide.</p></div><button class="button button-outline" id="new-session"><svg><use href="#i-plus"/></svg>New session</button></div>
+          <div class="workspace-grid">
+            <section class="chat-panel card" aria-label="Chat with Vera">
+              <header class="chat-header"><div class="avatar vera-avatar">v<span>✦</span></div><div class="chat-title"><strong>Vera</strong><span id="chat-subtitle">Merchant growth assistant</span></div><span class="chip neutral" id="chat-status">Ready to begin</span><button class="icon-button" id="export-chat" title="Export this conversation" aria-label="Export conversation"><svg><use href="#i-download"/></svg></button></header>
+              <div class="chat-timeline" id="chat-timeline" role="log" aria-live="polite" aria-relevant="additions">
+                <div class="chat-empty" id="chat-empty"><div class="empty-mark"><svg><use href="#i-spark"/></svg></div><span class="eyebrow">LET’S MAKE IT RELEVANT</span><h2>Good conversations<br>start with good context.</h2><p>Choose a business and a trigger.<br>Vera will prepare a message you can reply to.</p><button class="button button-primary" id="start-demo">Start demo conversation <svg><use href="#i-arrow"/></svg></button><span class="subtle-caption">Synthetic data · Nothing is sent to real customers</span></div>
+              </div>
+              <div class="quick-replies" id="quick-replies" aria-label="Example replies" hidden><button data-reply="Yes, send the checklist">Yes, send it</button><button data-reply="What is the price?">What is the price?</button><button data-reply="Remind me tomorrow">Maybe tomorrow</button><button data-reply="STOP">STOP</button></div>
+              <div class="pending-retry" id="pending-retry" hidden><span>The last request was not confirmed. Retry the same turn safely.</span><button class="text-button" id="retry-reply">Retry reply</button></div>
+              <form class="chat-composer" id="reply-form"><label class="sr-only" for="message-input">Your reply to Vera</label><textarea id="message-input" rows="1" maxlength="12000" placeholder="Start a conversation to reply…" disabled></textarea><button type="submit" class="send-button" id="send-reply" aria-label="Send reply" disabled><svg><use href="#i-send"/></svg></button></form>
+              <div class="composer-foot"><span id="composer-note">You play the merchant. Vera drafts; it does not publish or book.</span><span>Enter ↵</span></div>
+            </section>
+            <aside class="context-panel" aria-label="Scenario configuration">
+              <div class="card scenario-card"><div class="panel-heading"><h2>Scenario</h2><span class="chip neutral">Synthetic</span></div><p class="panel-description">Give every message a reason.</p>
+                <label class="field-label" for="business-select">BUSINESS TYPE</label><select id="business-select"><option value="restaurants">Restaurant</option><option value="salons">Salon</option><option value="gyms">Gym & fitness</option><option value="dentists">Dental clinic</option><option value="pharmacies">Pharmacy</option></select>
+                <label class="field-label" for="trigger-select">WHAT HAPPENED?</label><select id="trigger-select"><option value="perf_dip">Calls dropped this week</option><option value="perf_spike">More views this week</option><option value="milestone_reached">Reached 100 reviews</option><option value="curious_ask_due">Weekly business check-in</option></select>
+                <label class="field-label" for="language-select">RESPONSE LANGUAGE</label><select id="language-select"><option value="en">English</option><option value="hi-en mix">Hindi + English</option><option value="hi">Hindi</option></select>
+                <p class="field-help" id="scenario-help">Changes apply to your next session.</p>
+              </div>
+              <div class="card merchant-card"><div class="merchant-heading"><span class="business-avatar" id="merchant-avatar">GC</span><div><strong id="merchant-name">Garden Table Café</strong><span id="merchant-category">Restaurant · Sample business</span></div></div><div class="metrics"><div><strong id="metric-calls">20</strong><span>Calls / 30 days</span></div><div><strong id="metric-views">800</strong><span>Views / 30 days</span></div></div><div class="offer-label">ACTIVE OFFER</div><div class="offer-value" id="offer-value">Lunch Thali @ ₹149</div><button class="text-button" id="edit-context">View & edit context <span>↗</span></button></div>
+              <div class="rationale-card"><div class="panel-heading"><h2><svg><use href="#i-spark"/></svg>Behind the reply</h2></div><p id="rationale-text">After Vera responds, the engine’s decision rationale appears here. No hidden reasoning is exposed.</p><div class="decision-tags" id="decision-tags"></div></div>
+              <div class="safety-note"><svg><use href="#i-check"/></svg><p>Demo requests use a separate database. Your challenge API state stays untouched.</p></div>
+            </aside>
+          </div>
+        </section>
+        <section class="view" id="view-context" aria-labelledby="context-title" hidden>
+          <div class="page-heading"><div><div class="eyebrow">FOUR LAYERS. ONE GROUNDED RESPONSE.</div><h1 id="context-title">Shape the context.</h1><p>Edit a scenario, then test it in a fresh sandbox conversation.</p></div><button class="button button-outline" id="export-context"><svg><use href="#i-download"/></svg>Export JSON</button></div>
+          <div class="card context-editor-card"><div class="editor-top"><div class="editor-tabs" role="tablist" aria-label="Context layers"><button role="tab" aria-selected="true" data-scope="category" class="active">Category</button><button role="tab" aria-selected="false" data-scope="merchant">Merchant</button><button role="tab" aria-selected="false" data-scope="trigger">Trigger</button><button role="tab" aria-selected="false" data-scope="customer">Customer <span>optional</span></button></div><span class="code-tag">JSON</span></div><p id="context-description" class="editor-description">The business vertical, voice, and benchmarks. Customer context may be null.</p><label class="sr-only" for="context-json">JSON context</label><textarea class="code-editor" id="context-json" spellcheck="false"></textarea><div id="context-error" class="alert error" role="alert" hidden></div><div class="editor-actions"><div><button class="button button-outline" id="reset-context">Load selected scenario</button><label class="button button-outline file-button" for="import-context">Import JSON<input type="file" id="import-context" accept=".json,application/json"></label></div><button class="button button-primary" id="apply-context">Use in new conversation <svg><use href="#i-arrow"/></svg></button></div></div>
+          <p class="fine-print">Import format: an object containing category, merchant, trigger, and optional customer. Demo merchant/customer/trigger IDs are regenerated per session; all other fields are retained. Use API console for exact IDs and version updates.</p>
+        </section>
+        <section class="view" id="view-api" aria-labelledby="api-title" hidden>
+          <div class="page-heading"><div><div class="eyebrow">INSPECT THE REAL REQUESTS</div><h1 id="api-title">No black box.</h1><p>Send JSON, inspect responses, and test every required endpoint.</p></div><button class="button button-outline" id="export-log"><svg><use href="#i-download"/></svg>Export log</button></div>
+          <div class="api-grid"><div class="card api-request"><div class="panel-heading"><h2>Request</h2><span class="chip neutral" id="api-mode-chip">Sandbox state</span></div><label class="field-label" for="api-mode">TARGET DATABASE</label><select id="api-mode"><option value="demo">Sandbox — isolated from challenge</option><option value="judge">Challenge — real /v1 endpoints</option></select><p class="alert warn" id="judge-warning" hidden>These requests change real challenge state. Do not run write requests during an evaluation.</p><label class="field-label" for="api-endpoint">ENDPOINT</label><select id="api-endpoint"><option value="healthz">GET /v1/healthz</option><option value="metadata">GET /v1/metadata</option><option value="context">POST /v1/context</option><option value="tick">POST /v1/tick</option><option value="reply">POST /v1/reply</option></select><p class="request-url" id="request-url">Set your backend URL in Settings.</p><label class="field-label" for="api-body">JSON BODY</label><textarea class="code-editor compact" id="api-body" spellcheck="false" disabled>No body needed for this GET request.</textarea><button class="button button-primary full-width" id="send-api">Send request <svg><use href="#i-arrow"/></svg></button></div><div class="card api-response"><div class="panel-heading"><h2>Response</h2><span class="chip neutral" id="response-status">Not sent</span></div><pre id="api-response" tabindex="0">// Your API response will appear here.</pre></div></div>
+          <div class="card request-log"><div class="panel-heading"><h2>Request history</h2><button class="text-button" id="clear-log">Clear local log</button></div><div class="table-scroll"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Status</th><th>Duration</th><th>Time</th></tr></thead><tbody id="request-history"><tr><td colspan="5">No requests yet.</td></tr></tbody></table></div></div>
+        </section>
+        <section class="view" id="view-guide" aria-labelledby="guide-title" hidden>
+          <div class="page-heading"><div><div class="eyebrow">TWO SERVICES. ONE WORKING APP.</div><h1 id="guide-title">From local to live.</h1><p>You control deployment. This interface never deploys on your behalf.</p></div></div>
+          <div class="guide-grid"><article class="card guide-card"><span class="step-no">01</span><h2>Backend → Render</h2><p>Create a Python Web Service from your repository. Use the settings below for the full ZIP structure.</p><dl><dt>Root directory</dt><dd><code>backend</code></dd><dt>Build command</dt><dd><code>pip install -r requirements.txt</code></dd><dt>Start command</dt><dd><code>python start.py</code></dd><dt>Health check</dt><dd><code>/v1/healthz</code></dd></dl><p>Copy the public HTTPS base URL once your service is live.</p></article><article class="card guide-card"><span class="step-no">02</span><h2>Frontend → Netlify</h2><p>Set the Render URL in <code>frontend/config.js</code>. Upload only the <code>frontend</code> folder to Netlify Drop.</p><pre>API_BASE_URL: "https://your-service.onrender.com"</pre><p>No npm install, framework build, or API key is needed for this static frontend.</p></article><article class="card guide-card"><span class="step-no">03</span><h2>Connect & verify</h2><p>Open your Netlify site, check connection, and start a demo conversation. In Render, set <code>CORS_ORIGINS</code> to your Netlify origin.</p><p>Set optional <code>FRONTEND_URL</code> in Render to add your website link to the backend landing page.</p><button class="button button-primary" data-open-settings>Open connection settings</button></article><article class="card guide-card"><span class="step-no">04</span><h2>Submit the right URL</h2><p>Share the <strong>Netlify URL</strong> to show the interface. Submit the <strong>Render base URL</strong> to the challenge judge.</p><p>Never append <code>/v1</code> to the submission URL. Required endpoints remain at the Render root.</p></article></div>
+          <div class="alert warn"><strong>Storage & cold starts:</strong> Render Free may sleep and lose local SQLite data on restarts, redeploys, or spin-down. For retained state, use a paid service with a persistent disk and DB_PATH on that disk. See the included deployment instructions for the exact setup and official sources.</div>
+          <p class="fine-print">This is a challenge message engine, not a general-purpose LLM or a live WhatsApp integration. It returns drafts and actions; it does not send real messages, publish listings, confirm bookings, or make payments.</p>
+        </section>
+        <footer class="page-footer"><span>Vera Studio</span><span>Made for thoughtful merchant conversations.</span><span>Full-stack · v2.0</span></footer>
+      </main>
+    </div>
+  </div>
+  <dialog id="settings-dialog" aria-labelledby="settings-title"><form id="settings-form"><div class="dialog-header"><div><span class="eyebrow">YOUR DEPLOYMENT</span><h2 id="settings-title">Connect your backend.</h2></div><button type="button" id="close-settings" class="icon-button close-button" aria-label="Close settings">×</button></div><p>The frontend runs on Netlify. Requests go directly to the Render URL you set here.</p><label class="field-label" for="backend-url">RENDER BASE URL</label><input type="url" id="backend-url" placeholder="https://your-service.onrender.com" required autocomplete="off"><p class="field-help">Base URL only — no /v1 or /docs. Saved only in this browser as a temporary override.</p><label class="field-label" for="api-token">API TOKEN <span class="muted">(OPTIONAL)</span></label><input type="password" id="api-token" placeholder="Only if API_TOKEN is configured on Render" autocomplete="off"><p class="field-help">Held in memory only. Never written to config.js or browser storage. Re-enter after reloading.</p><div class="config-origin"><span>For all visitors, edit</span><code>frontend/config.js → API_BASE_URL</code></div><div id="settings-error" class="alert error" role="alert" hidden></div><div class="dialog-actions"><button type="button" class="text-button" id="reset-settings">Use config.js default</button><button class="button button-primary" id="save-settings" type="submit">Save & test connection <svg><use href="#i-arrow"/></svg></button></div><p class="field-help" id="settings-note">Changing backend clears this tab’s conversation and token to avoid mixing services.</p></form></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript><div class="alert error">Enable JavaScript to use the chat interface.</div></noscript>
+</body>
+</html>

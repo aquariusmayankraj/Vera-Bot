@@ -1,0 +1,7 @@
+# Runtime versions used for this package's local verification.
+fastapi==0.128.2
+uvicorn==0.48.0
+pydantic==2.13.4
+python-dotenv==1.2.2
+# Supplies IANA timezone data on Windows as well as Linux/macOS.
+tzdata==2026.2

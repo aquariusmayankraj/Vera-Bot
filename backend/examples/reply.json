@@ -1,0 +1,9 @@
+{
+  "conversation_id": "REPLACE_WITH_RETURNED_CONVERSATION_ID",
+  "merchant_id": "demo_cafe",
+  "customer_id": null,
+  "from_role": "merchant",
+  "message": "Yes, send the draft",
+  "received_at": "2026-04-26T10:01:00Z",
+  "turn_number": 2
+}
